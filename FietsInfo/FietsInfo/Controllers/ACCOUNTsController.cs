@@ -12,13 +12,6 @@ namespace FietsInfo.Controllers
 {
     public class ACCOUNTsController : Controller
     {
-        public ActionResult Accounts()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         private DatabaseModel db = new DatabaseModel();
 
         // GET: ACCOUNTs

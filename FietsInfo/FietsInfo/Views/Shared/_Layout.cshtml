@@ -6,6 +6,7 @@
     <title>FietsInfo - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/stijl.css">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,7 +22,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accounts", "Index", "ACCOUNTs")</li>
-                    <li>@Html.ActionLink("Fietsbenodigdheden", "Index", "FIETSBENODIGDHEDENs")</li>
                     <li>@Html.ActionLink("Fietsbenodigdheden", "Index", "FIETSBENODIGDHEDENs")</li>
                     <li>@Html.ActionLink("Ingeschreven Schema's", "Index", "INGESCHREVENSCHEMAs")</li>
                     <li>@Html.ActionLink("Trainingsschema's", "Index", "TRAININGSSCHEMAs")</li>
