@@ -1,0 +1,90 @@
+﻿@model FietsInfo.TRAININGSSCHEMA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TRAININGSSCHEMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Omschrijving)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urenmaandag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urenmaandag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urendinsdag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urendinsdag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urenwoensdag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urenwoensdag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urendonderdag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urendonderdag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urenvrijdag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urenvrijdag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urenzaterdag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urenzaterdag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Urenzondag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urenzondag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trainingsniveau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trainingsniveau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Trainingsnaam }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

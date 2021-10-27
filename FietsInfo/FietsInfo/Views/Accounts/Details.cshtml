@@ -1,0 +1,82 @@
+﻿@model FietsInfo.ACCOUNT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ACCOUNT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Wachtwoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Wachtwoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voornaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voornaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Leeftijd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Leeftijd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Binnenbeenlengte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Binnenbeenlengte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gewicht)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gewicht)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lengte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lengte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niveau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niveau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

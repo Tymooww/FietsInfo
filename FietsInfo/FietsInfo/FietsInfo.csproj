@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -117,14 +125,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ACCOUNT.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ACCOUNTsController.cs" />
+    <Compile Include="Controllers\FIETSBENODIGDHEDENsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\INGESCHREVENSCHEMAsController.cs" />
+    <Compile Include="Controllers\TRAININGSSCHEMAsController.cs" />
+    <Compile Include="Models\DatabaseModel.cs" />
+    <Compile Include="Models\FIETSBENODIGDHEDEN.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\INGESCHREVENSCHEMA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\TRAININGSSCHEMA.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -162,10 +179,29 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\FIETSBENODIGDHEDENs\Create.cshtml" />
+    <Content Include="Views\FIETSBENODIGDHEDENs\Delete.cshtml" />
+    <Content Include="Views\FIETSBENODIGDHEDENs\Details.cshtml" />
+    <Content Include="Views\FIETSBENODIGDHEDENs\Edit.cshtml" />
+    <Content Include="Views\FIETSBENODIGDHEDENs\Index.cshtml" />
+    <Content Include="Views\INGESCHREVENSCHEMAs\Create.cshtml" />
+    <Content Include="Views\INGESCHREVENSCHEMAs\Delete.cshtml" />
+    <Content Include="Views\INGESCHREVENSCHEMAs\Details.cshtml" />
+    <Content Include="Views\INGESCHREVENSCHEMAs\Edit.cshtml" />
+    <Content Include="Views\INGESCHREVENSCHEMAs\Index.cshtml" />
+    <Content Include="Views\TRAININGSSCHEMAs\Create.cshtml" />
+    <Content Include="Views\TRAININGSSCHEMAs\Delete.cshtml" />
+    <Content Include="Views\TRAININGSSCHEMAs\Details.cshtml" />
+    <Content Include="Views\TRAININGSSCHEMAs\Edit.cshtml" />
+    <Content Include="Views\TRAININGSSCHEMAs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

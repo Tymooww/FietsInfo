@@ -1,0 +1,34 @@
+﻿@model FietsInfo.FIETSBENODIGDHEDEN
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FIETSBENODIGDHEDEN</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ACCOUNT.Wachtwoord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACCOUNT.Wachtwoord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Informatie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Informatie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Aspectnaam }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
