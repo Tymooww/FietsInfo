@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<FietsInfo.ACCOUNT>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Accounts beheren";
 }
 
-<h2>Index</h2>
+<h2>Accounts beheren</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nieuw account", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Wachtwoord)
+            @Html.DisplayNameFor(model => model.UserID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Voornaam)
@@ -41,7 +41,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Wachtwoord)
+            @Html.DisplayFor(modelItem => item.UserID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Voornaam)
@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.Niveau)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
+            @Html.ActionLink("Wijzigen", "Edit", new { id=item.UserID }) |
             @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
+            @Html.ActionLink("Verwijderen", "Delete", new { id=item.UserID })
         </td>
     </tr>
 }

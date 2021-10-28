@@ -5,3 +5,15 @@
 .center{
     text-align: center;
 }
+
+.titelmargin{
+    margin-top: 50px;
+}
+
+.knoppenmargin {
+    margin-top: 30px;
+}
+
+h1 {
+    font-weight: bold;
+}

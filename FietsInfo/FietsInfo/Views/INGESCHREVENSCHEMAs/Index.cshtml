@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Gevolgde trainingsschema's beheren</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ACCOUNT.Wachtwoord)
+            @Html.DisplayNameFor(model => model.ACCOUNT.UserID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TRAININGSSCHEMA.Omschrijving)
+            @Html.DisplayNameFor(model => model.TRAININGSSCHEMA.Trainingsnaam)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsVoltooid)
@@ -29,10 +29,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ACCOUNT.Wachtwoord)
+            @Html.DisplayFor(modelItem => item.ACCOUNT.UserID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TRAININGSSCHEMA.Omschrijving)
+            @Html.DisplayFor(modelItem => item.TRAININGSSCHEMA.Trainingsnaam)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsVoltooid)
@@ -40,10 +40,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.DagenVoltooid)
         </td>
+        Hoe kunnen bewerken met 2 primary keys?
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Wijzigen", "Edit", new { id=item.IsVoltooid}) |
+            @Html.ActionLink("Details", "Details", new { id = item.IsVoltooid }) |
+            @Html.ActionLink("Verwijderen", "Delete", new { id = item.IsVoltooid })
         </td>
     </tr>
 }
