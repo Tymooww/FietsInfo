@@ -26,5 +26,29 @@ namespace FietsInfo.Controllers
 
             return View();
         }
+        
+        public ActionResult Login()
+        {
+            return View();
+        }
+        
+        public ActionResult Registreer()
+        {
+            return View();
+        }
+
+        public ActionResult Login_Click()
+        {
+            //Login
+
+            return RedirectToAction("Index");
+        }
+        
+        public ActionResult Registreer_Click()
+        {
+            //Opslaan in db
+
+            return RedirectToAction("Login");
+        }
     }
 }

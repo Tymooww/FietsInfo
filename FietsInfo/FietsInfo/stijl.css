@@ -6,8 +6,9 @@
     text-align: center;
 }
 
-.titelmargin{
+.titelmargin {
     margin-top: 50px;
+    margin-bottom: 535px;
 }
 
 .knoppenmargin {
@@ -16,4 +17,13 @@
 
 h1 {
     font-weight: bold;
+}
+
+input[type=submit] {
+    color: #fff;
+    background-color: black;
+    border-color: black;
+    border-radius: 7px;
+    padding: 5px 30px 5px 30px;
+    font-size: 17px;
 }

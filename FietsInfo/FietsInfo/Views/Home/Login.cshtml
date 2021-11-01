@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Inloggen";
+}
+<div class="center">
+    <div class="titelmargin">
+        <h1>Inloggen</h1>
+        <p div class="lead">Log in met je gebruikersnaam en wachtwoord</p>
+        <br />
+        <form method="get" action="@Url.Action("Login_Click", "Home")">
+            <p div class="lead">Gebruikersnaam</p>
+            <input type="text" name="gebruikersnaam" />
+            <br />
+            <br />
+            <p div class="lead">Wachtwoord</p>
+            <input type="text" name="wachtwoord" />
+            <br />
+            <br />
+            <div class="knop">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</div>
+
+

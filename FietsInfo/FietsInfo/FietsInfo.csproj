@@ -200,6 +200,8 @@
     <Content Include="Views\TRAININGSSCHEMAs\Details.cshtml" />
     <Content Include="Views\TRAININGSSCHEMAs\Edit.cshtml" />
     <Content Include="Views\TRAININGSSCHEMAs\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Registreer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

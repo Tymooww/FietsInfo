@@ -3211,9 +3211,9 @@ fieldset[disabled] .btn-default.focus {
   background-color: #333;
 }
 .btn-primary {
-  color: #fff;
-  background-color: black;
-  border-color: black;
+    color: #fff;
+    background-color: black;
+    border-color: black;
 }
     .btn-primary:focus,
     .btn-primary.focus {
@@ -3221,11 +3221,11 @@ fieldset[disabled] .btn-default.focus {
         background-color: #fff;
         border-color: #fff;
     }
-.btn-primary:hover {
-    color: black;
-    background-color: #fff;
-    border-color: #fff;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #252525;
+        border-color: #252525;
+    }
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -4252,9 +4252,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 @media (min-width: 768px) {
-  .navbar-header {
-    float: left;
-  }
+    .navbar-header {
+        float: left;
+        font-weight: bold;
+    }
 }
 .navbar-collapse {
   padding-right: 15px;

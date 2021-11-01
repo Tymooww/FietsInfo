@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Registreren";
+}
+<div class="center">
+    <div class="titelmargin">
+        <h1>Registreren</h1>
+        <p div class="lead">Maak een nieuw account aan bij FietsInfo</p>
+        <br />
+        <form method="get" action="@Url.Action("Registreer_Click", "Home")">
+            <p div class="lead">Kies een gebruikersnaam</p>
+            <input type="text" name="gebruikersnaam" />
+            <br />
+            <br />
+            <p div class="lead">Kies een wachtwoord</p>
+            <input type="text" name="wachtwoord" />
+            <br />
+            <br />
+            <p div class="lead">Voer jouw binnenbeenlengte in</p>
+            <input type="text" name="binnenbeenlengte" />
+            <br />
+            <br />
+            <input type="submit" value="Registreer">
+        </form>
+    </div>
+</div>
+
