@@ -8,6 +8,8 @@ namespace FietsInfo.Controllers
 {
     public class HomeController : Controller
     {
+        private DatabaseModel db = new DatabaseModel();
+
         public ActionResult Index()
         {
             return View();
@@ -37,16 +39,39 @@ namespace FietsInfo.Controllers
             return View();
         }
 
-        public ActionResult Login_Click()
+        public ActionResult Login_Click(string gebruikersnaam, string wachtwoord)
         {
-            //Login
+            //Session["gebruikersnaam"] = gebruikersnaam;
+            ACCOUNT account = db.ACCOUNT.Find(gebruikersnaam);
+            //if (account.gebruikersnaam)
 
             return RedirectToAction("Index");
         }
         
-        public ActionResult Registreer_Click()
+        public ActionResult Registreer_Click(string gebruikersnaam, string wachtwoord, string voornaam, int binnenbeenlengte)
         {
-            //Opslaan in db
+            //Random nummer genereren voor UserID
+            Random RandomNummer = new Random();
+            int nummer = RandomNummer.Next();
+            
+            //Aanmaken van een account in een object
+            ACCOUNT niewAccount = new ACCOUNT()
+            {
+                Gebruikersnaam = gebruikersnaam,
+                UserID = nummer,
+                Wachtwoord = wachtwoord,
+                Binnenbeenlengte = binnenbeenlengte,
+                Voornaam = voornaam,
+                Leeftijd = null,
+                IsAdmin = false,
+                Gewicht = null,
+                Lengte = null,
+                Niveau = 0
+            };
+
+            //Account toevoegen aan database
+            db.ACCOUNT.Add(niewAccount);
+            db.SaveChanges();
 
             return RedirectToAction("Login");
         }

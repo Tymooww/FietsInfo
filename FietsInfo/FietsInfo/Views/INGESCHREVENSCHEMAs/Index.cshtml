@@ -40,11 +40,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.DagenVoltooid)
         </td>
-        Hoe kunnen bewerken met 2 primary keys?
         <td>
-            @Html.ActionLink("Wijzigen", "Edit", new { id=item.IsVoltooid}) |
-            @Html.ActionLink("Details", "Details", new { id = item.IsVoltooid }) |
-            @Html.ActionLink("Verwijderen", "Delete", new { id = item.IsVoltooid })
+            @Html.ActionLink("Wijzigen", "Edit", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam}) |
+            @Html.ActionLink("Details", "Details", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam}) |
+            @Html.ActionLink("Verwijderen", "Delete", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam})
         </td>
     </tr>
 }

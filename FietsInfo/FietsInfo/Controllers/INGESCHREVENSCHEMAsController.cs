@@ -22,13 +22,13 @@ namespace FietsInfo.Controllers
         }
 
         // GET: INGESCHREVENSCHEMAs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? userid, string trainingsnaam)
         {
-            if (id == null)
+            if (userid == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(id);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
@@ -64,13 +64,13 @@ namespace FietsInfo.Controllers
         }
 
         // GET: INGESCHREVENSCHEMAs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? userid, string trainingsnaam)
         {
-            if (id == null)
+            if (userid == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(id);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
@@ -99,13 +99,13 @@ namespace FietsInfo.Controllers
         }
 
         // GET: INGESCHREVENSCHEMAs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? userid, string trainingsnaam)
         {
-            if (id == null)
+            if (userid == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(id);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,9 @@ namespace FietsInfo.Controllers
         // POST: INGESCHREVENSCHEMAs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? userid, string trainingsnaam)
         {
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(id);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
             db.INGESCHREVENSCHEMA.Remove(iNGESCHREVENSCHEMA);
             db.SaveChanges();
             return RedirectToAction("Index");

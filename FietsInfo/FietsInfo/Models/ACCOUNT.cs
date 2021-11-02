@@ -22,6 +22,10 @@ namespace FietsInfo
 
         [Required]
         [StringLength(255)]
+        public string Gebruikersnaam { get; set; }
+
+        [Required]
+        [StringLength(255)]
         public string Wachtwoord { get; set; }
 
         [Required]
