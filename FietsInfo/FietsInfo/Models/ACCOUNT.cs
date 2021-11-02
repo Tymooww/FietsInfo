@@ -39,6 +39,12 @@ namespace FietsInfo
 
         public int Binnenbeenlengte { get; set; }
 
+        public double Maatberekenen()
+        {
+            double Fietsmaat = Binnenbeenlengte * 0.68;
+            return Fietsmaat;
+        }
+
         public int? Gewicht { get; set; }
 
         public int? Lengte { get; set; }

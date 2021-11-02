@@ -20,7 +20,15 @@ namespace FietsInfo.Controllers
             return View(db.ACCOUNT.ToList());
         }
 
+        public ActionResult Fietsmaatberekenen()
+        {
+            return View();
+        }
+
+  
+       
         // GET: ACCOUNTs/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
