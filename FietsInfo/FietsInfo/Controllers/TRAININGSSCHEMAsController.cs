@@ -12,11 +12,31 @@ namespace FietsInfo.Controllers
 {
     public class TRAININGSSCHEMAsController : Controller
     {
+        public ActionResult IndexAdmin()
+        {
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            {
+                return View(db.TRAININGSSCHEMA.ToList());
+            }
+
+            return RedirectToAction("Login", "Home");
+            
+        }
+
         private DatabaseModel db = new DatabaseModel();
 
         // GET: TRAININGSSCHEMAs
         public ActionResult Index()
         {
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            
             return View(db.TRAININGSSCHEMA.ToList());
         }
 
@@ -52,7 +72,7 @@ namespace FietsInfo.Controllers
             {
                 db.TRAININGSSCHEMA.Add(tRAININGSSCHEMA);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
 
             return View(tRAININGSSCHEMA);
@@ -84,7 +104,7 @@ namespace FietsInfo.Controllers
             {
                 db.Entry(tRAININGSSCHEMA).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
             return View(tRAININGSSCHEMA);
         }
@@ -112,7 +132,7 @@ namespace FietsInfo.Controllers
             TRAININGSSCHEMA tRAININGSSCHEMA = db.TRAININGSSCHEMA.Find(id);
             db.TRAININGSSCHEMA.Remove(tRAININGSSCHEMA);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAdmin");
         }
 
         protected override void Dispose(bool disposing)

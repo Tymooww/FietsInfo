@@ -21,11 +21,39 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accounts", "Index", "ACCOUNTs")</li>
-                    <li>@Html.ActionLink("Fietsbenodigdheden", "Index", "FIETSBENODIGDHEDENs")</li>
-                    <li>@Html.ActionLink("Ingeschreven Schema's", "Index", "INGESCHREVENSCHEMAs")</li>
-                    <li>@Html.ActionLink("Trainingsschema's", "Index", "TRAININGSSCHEMAs")</li>
-                    <li>@Html.ActionLink("Fietsmaat berekenen", "Fietsmaatberekenen", "ACCOUNTs")</li>
+                    @if (!string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+                    {
+                        if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+                        {
+                            <li>@Html.ActionLink("Trainingsschema's", "IndexAdmin", "TRAININGSSCHEMAs")</li>
+                            <li>@Html.ActionLink("Fietsbenodigdheden", "IndexAdmin", "FIETSBENODIGDHEDENs")</li>
+                            <li>@Html.ActionLink("Accounts", "Index", "ACCOUNTs")</li>
+                        }
+
+                        if (!(bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+                        {
+                            <li>@Html.ActionLink("Fietsbenodigdheden", "Index", "FIETSBENODIGDHEDENs")</li>
+                            <li>@Html.ActionLink("Voortgang trainingen", "Index", "INGESCHREVENSCHEMAs")</li>
+                            <li>@Html.ActionLink("Trainingsschema's", "Index", "TRAININGSSCHEMAs")</li>
+                            <li>@Html.ActionLink("Fietsmaat", "Fietsmaatberekenen", "ACCOUNTs")</li>
+                        }
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Fietsbenodigdheden", "Index", "FIETSBENODIGDHEDENs")</li>
+                        <li>@Html.ActionLink("Voortgang trainingen", "Index", "INGESCHREVENSCHEMAs")</li>
+                        <li>@Html.ActionLink("Trainingsschema's", "Index", "TRAININGSSCHEMAs")</li>
+                        <li>@Html.ActionLink("Fietsmaat", "Fietsmaatberekenen", "ACCOUNTs")</li>
+                    }
+                    @if (!string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+                    {
+                        <li>@Html.ActionLink("Uitloggen", "Uitloggen", "Home")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                        <li>@Html.ActionLink("Registreer", "Registreer", "Home")</li>
+                    }
                 </ul>
             </div>
         </div>

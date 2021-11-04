@@ -5,10 +5,6 @@
 }
 
 <h2>Fietsbenodigdheden</h2>
-
-<p>
-    @Html.ActionLink("Informatie toevoegen", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -29,9 +25,7 @@
         @Html.DisplayFor(modelItem => item.Informatie)
     </td>
     <td>
-        @Html.ActionLink("Wijzigen", "Edit", new { id = item.Aspectnaam }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Aspectnaam }) |
-        @Html.ActionLink("Verwijderen", "Delete", new { id = item.Aspectnaam })
+        @Html.ActionLink("Lees meer...", "Details", new { id = item.Aspectnaam })
     </td>
 </tr>
 }

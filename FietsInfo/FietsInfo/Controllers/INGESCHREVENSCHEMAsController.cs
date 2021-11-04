@@ -17,6 +17,11 @@ namespace FietsInfo.Controllers
         // GET: INGESCHREVENSCHEMAs
         public ActionResult Index()
         {
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             var iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Include(i => i.ACCOUNT).Include(i => i.TRAININGSSCHEMA);
             return View(iNGESCHREVENSCHEMA.ToList());
         }

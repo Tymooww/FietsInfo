@@ -8,7 +8,7 @@
 
 .titelmargin {
     margin-top: 50px;
-    margin-bottom: 535px;
+    margin-bottom: 320px;
 }
 
 .knoppenmargin {
@@ -26,4 +26,8 @@ input[type=submit] {
     border-radius: 7px;
     padding: 5px 30px 5px 30px;
     font-size: 17px;
+}
+
+.foutmelding{
+    color: red;
 }

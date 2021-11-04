@@ -39,36 +39,57 @@ namespace FietsInfo.Controllers
         {
             return View();
         }
+        
+        public ActionResult Uitloggen()
+        {
+            Session["Gebruikersnaam"] = null;
+            return View("Index");
+        }
 
         public ActionResult Login_Click(string gebruikersnaam, string wachtwoord)
         {
-            if (string.IsNullOrWhiteSpace(wachtwoord))
+            if (string.IsNullOrWhiteSpace(gebruikersnaam) || string.IsNullOrWhiteSpace(wachtwoord))
             {
-
+                //Error melding geven
+                HttpContext.Session.Add("LoginCode", "VeldLeeg");
             }
 
             else
             {
+                //Account zoeken
                 ACCOUNT account = db.ACCOUNT.Find(gebruikersnaam);
-                if (account.Gebruikersnaam == gebruikersnaam && account.Wachtwoord == wachtwoord)
+                
+                if (account != null)
                 {
-                    HttpContext.Session.Add("Gebruikersnaam", gebruikersnaam);
-                    Debug.WriteLine(Session["Gebruikersnaam"]);
-                    return RedirectToAction("Index");
+                    //Inloggegevens checken
+                    if (account.Gebruikersnaam == gebruikersnaam && account.Wachtwoord == wachtwoord)
+                    {
+                        HttpContext.Session.Add("Gebruikersnaam", gebruikersnaam);
+                        HttpContext.Session.Add("LoginCode", "Succes");
+                        Debug.WriteLine(Session["Gebruikersnaam"] + " succesvol ingelogd!");
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        //Error melding geven
+                        HttpContext.Session.Add("LoginCode", "Onjuist");
+                    }
                 }
-                
-                //Toon foutmelding
-                
+                else
+                {
+                    //Error melding geven
+                    HttpContext.Session.Add("LoginCode", "Onjuist");
+                }
             }
-           
-            return RedirectToAction("Inloggen");
+            return View("Login");
         }
         
         public ActionResult Registreer_Click(string gebruikersnaam, string wachtwoord, string voornaam, int? binnenbeenlengte)
         {
             if (string.IsNullOrWhiteSpace(gebruikersnaam) || string.IsNullOrWhiteSpace(wachtwoord) || string.IsNullOrWhiteSpace(voornaam) || binnenbeenlengte == null)
             {
-                //Toon foutmelding
+                //Error melding geven
+                HttpContext.Session.Add("RegistreerCode", "Onjuist");
                 return RedirectToAction("Registreer");
             }
             else
@@ -87,17 +108,15 @@ namespace FietsInfo.Controllers
                     Gewicht = null,
                     Lengte = null,
                     Niveau = 0
-
                 };
 
-                //Account toevoegen aan database
+                //Account opslaan in de database
                 db.ACCOUNT.Add(niewAccount);
                 db.SaveChanges();
 
                 return RedirectToAction("Login");
             }
 
-            
         }
     }
 }

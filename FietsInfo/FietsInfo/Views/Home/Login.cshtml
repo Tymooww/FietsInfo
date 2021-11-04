@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FietsInfo.ACCOUNT
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,8 +21,18 @@
             <input type="text" name="wachtwoord" />
             <br />
             <br />
+            @if ((string)Session["LoginCode"] == "Onjuist")
+            {
+                <p class="foutmelding">Gebruikersnaam of wachtwoord is onjuist!</p>
+            }
+            
+            @if ((string)Session["LoginCode"] == "VeldLeeg")
+            {
+                <p class="foutmelding">Eén of meerdere velden zijn niet ingevuld!</p>
+            }
+
             <div class="knop">
-                <input type="submit" value="Login">
+                <input type="submit" value="Log in">
             </div>
         </form>
     </div>

@@ -3,25 +3,9 @@
     ViewBag.Title = "Fietsmaatberekenen";
 }
 
-<h2>Bereken hier uw Fietsmaat</h2>
-<div class="center">
-    <div class="titelmargin">
+<h2>Fietsmaat</h2>
+<p div class="lead">Bereken je framemaat hier.</p>
 
-        <p div class="lead">Log altijd eerst in voordat uw fietsmaat berekend kan worden</p>
-
-        <p>Klik hier om de fietsmaat te berekenen.</p>
-        
-        <button onclick="myFunction()">Bereken!</button>
-        <p id="demo"></p>
-        <script>
-        function myFunction() {
-        document.getElementById("demo").innerHTML = "je fietsmaat is:";
-            }
-        </script>
-       <textarea>
-           
-        </textarea>
-    </div>
-</div>
+<input class="btn btn-primary btn-lg" type="button" value="FietsmaatBerekenen" onclick="location.href='@Url.Action("FietsMaat", "ACCOUNTs")'">
 
 

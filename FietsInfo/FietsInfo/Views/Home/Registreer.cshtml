@@ -27,6 +27,10 @@
             <input type="text" name="voornaam" />
             <br />
             <br />
+            @if ((string)Session["RegistreerCode"] == "Onjuist")
+            {
+                <p class="foutmelding">Eén of meerdere velden zijn niet ingevuld!</p>
+            }
             <input type="submit" value="Registreer">
         </form>
     </div>

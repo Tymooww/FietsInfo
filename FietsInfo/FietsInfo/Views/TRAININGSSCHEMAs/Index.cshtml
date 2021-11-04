@@ -5,10 +5,6 @@
 }
 
 <h2>Trainingsschema's</h2>
-
-<p>
-    @Html.ActionLink("Nieuw trainingsschema maken", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -77,9 +73,7 @@
         @Html.DisplayFor(modelItem => item.trainingsniveau)
     </td>
     <td>
-        @Html.ActionLink("Wijzigen", "Edit", new { id = item.Trainingsnaam }) 
-        @Html.ActionLink("Details", "Details", new { id = item.Trainingsnaam }) 
-        @Html.ActionLink("Verwijderen", "Delete", new { id = item.Trainingsnaam })
+        @Html.ActionLink("Volgen", "Details", new { id = item.Trainingsnaam })
     </td>
 </tr>
 }

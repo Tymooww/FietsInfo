@@ -14,6 +14,21 @@ namespace FietsInfo.Controllers
     {
         private DatabaseModel db = new DatabaseModel();
 
+        public ActionResult IndexAdmin()
+        {
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            {
+                var fIETSBENODIGDHEDEN = db.FIETSBENODIGDHEDEN.Include(f => f.ACCOUNT);
+                return View(fIETSBENODIGDHEDEN.ToList());
+            }
+
+            return RedirectToAction("Login", "Home");
+        }
+
         // GET: FIETSBENODIGDHEDENs
         public ActionResult Index()
         {
@@ -54,7 +69,7 @@ namespace FietsInfo.Controllers
             {
                 db.FIETSBENODIGDHEDEN.Add(fIETSBENODIGDHEDEN);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
 
             ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
@@ -88,7 +103,7 @@ namespace FietsInfo.Controllers
             {
                 db.Entry(fIETSBENODIGDHEDEN).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAdmin");
             }
             ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
@@ -117,7 +132,7 @@ namespace FietsInfo.Controllers
             FIETSBENODIGDHEDEN fIETSBENODIGDHEDEN = db.FIETSBENODIGDHEDEN.Find(id);
             db.FIETSBENODIGDHEDEN.Remove(fIETSBENODIGDHEDEN);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexAdmin");
         }
 
         protected override void Dispose(bool disposing)

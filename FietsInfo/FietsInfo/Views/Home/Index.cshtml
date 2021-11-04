@@ -1,12 +1,24 @@
-﻿@{
+﻿@model FietsInfo.ACCOUNT
+@{
     ViewBag.Title = "Start Pagina";
 }
 
 <div class="center">
     <div class="titelmargin">
-        <h1>Welkom bij FietsInfo</h1>
-        <p div class="lead">Log in en kies één van de bovenstaande pagina's</p>
-        <p div class="knoppenmargin"><a href="/Home/Login" class="btn btn-primary btn-lg">Inloggen</a></p>
-        <p><a href="/Home/Registreer" class="btn btn-primary btn-lg">Registreren</a></p>
+
+        @if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+        {
+            <h1>Welkom bij FietsInfo</h1>
+            <p div class="lead">Log in of kies één van de bovenstaande pagina's</p>
+
+            <p div class="knoppenmargin"><a href="/Home/Login" class="btn btn-primary btn-lg">Inloggen</a></p>
+            <p><a href="/Home/Registreer" class="btn btn-primary btn-lg">Registreren</a></p>
+        }
+        else
+        {
+            <h1>Welkom terug @Session["Gebruikersnaam"]!</h1>
+            <p div class="lead">Kies één van de bovenstaande pagina's</p>
+            <input class="btn btn-primary btn-lg" type="button" value="Uitloggen" onclick="location.href='@Url.Action("Uitloggen", "Home")'">
+        }
     </div>
 </div>

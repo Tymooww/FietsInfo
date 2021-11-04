@@ -14,14 +14,35 @@ namespace FietsInfo.Controllers
     {
         private DatabaseModel db = new DatabaseModel();
 
+        public ActionResult FietsMaat()
+        {
+            ACCOUNT account = db.ACCOUNT.Find(Session["Gebruikersnaam"]);
+            double fietsmaat = account.Fietsmaatberekenen();
+            return View("Fietsmaatberekenen", fietsmaat);
+        }
+
         // GET: ACCOUNTs
         public ActionResult Index()
         {
-            return View(db.ACCOUNT.ToList());
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            {
+                return View(db.ACCOUNT.ToList());
+            }
+
+            return RedirectToAction("Login", "Home");
         }
 
         public ActionResult Fietsmaatberekenen()
         {
+            if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
 

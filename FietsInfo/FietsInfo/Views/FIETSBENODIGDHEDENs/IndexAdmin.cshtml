@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<FietsInfo.FIETSBENODIGDHEDEN>
+
+@{
+    ViewBag.Title = "Fietsbenodigdheden";
+}
+
+<h2>Fietsbenodigdheden toevoegen of aanpassen</h2>
+
+<p>
+    @Html.ActionLink("Informatie toevoegen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Aspectnaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Informatie)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aspectnaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Informatie)
+            </td>
+            <td>
+                @Html.ActionLink("Wijzigen", "Edit", new { id = item.Aspectnaam }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Aspectnaam }) |
+                @Html.ActionLink("Verwijderen", "Delete", new { id = item.Aspectnaam })
+            </td>
+        </tr>
+    }
+
+</table>
+
