@@ -57,7 +57,7 @@ namespace FietsInfo.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.UserID);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 
@@ -73,7 +73,7 @@ namespace FietsInfo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.UserID);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 
@@ -90,7 +90,7 @@ namespace FietsInfo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.UserID);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 

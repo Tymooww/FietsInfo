@@ -7,12 +7,12 @@
 <h2>Gevolgde trainingsschema's beheren</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Een nieuw schema volgen", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ACCOUNT.UserID)
+            @Html.DisplayNameFor(model => model.ACCOUNT.Gebruikersnaam)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TRAININGSSCHEMA.Trainingsnaam)
@@ -27,25 +27,25 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACCOUNT.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TRAININGSSCHEMA.Trainingsnaam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsVoltooid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DagenVoltooid)
-        </td>
-        <td>
-            @Html.ActionLink("Wijzigen", "Edit", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam}) |
-            @Html.ActionLink("Details", "Details", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam}) |
-            @Html.ActionLink("Verwijderen", "Delete", new { userid=item.UserID, trainingsnaam=item.Trainingsnaam})
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ACCOUNT.Gebruikersnaam)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TRAININGSSCHEMA.Trainingsnaam)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsVoltooid)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DagenVoltooid)
+    </td>
+    <td>
+        @Html.ActionLink("Wijzigen", "Edit", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam }) |
+        @Html.ActionLink("Details", "Details", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam }) |
+        @Html.ActionLink("Verwijderen", "Delete", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam })
+    </td>
+</tr>
 }
 
 </table>

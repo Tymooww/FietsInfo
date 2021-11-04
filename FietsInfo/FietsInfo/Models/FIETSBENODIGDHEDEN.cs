@@ -17,7 +17,8 @@ namespace FietsInfo
         [StringLength(255)]
         public string Informatie { get; set; }
 
-        public int? UserID { get; set; }
+        [StringLength(255)]
+        public string Gebruikersnaam { get; set; }
 
         public virtual ACCOUNT ACCOUNT { get; set; }
     }

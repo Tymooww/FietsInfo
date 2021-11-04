@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace FietsInfo.Controllers
 {
@@ -41,39 +42,62 @@ namespace FietsInfo.Controllers
 
         public ActionResult Login_Click(string gebruikersnaam, string wachtwoord)
         {
-            //Session["gebruikersnaam"] = gebruikersnaam;
-            ACCOUNT account = db.ACCOUNT.Find(gebruikersnaam);
-            //if (account.gebruikersnaam)
+            if (string.IsNullOrWhiteSpace(wachtwoord))
+            {
 
-            return RedirectToAction("Index");
+            }
+
+            else
+            {
+                ACCOUNT account = db.ACCOUNT.Find(gebruikersnaam);
+                if (account.Gebruikersnaam == gebruikersnaam && account.Wachtwoord == wachtwoord)
+                {
+                    HttpContext.Session.Add("Gebruikersnaam", gebruikersnaam);
+                    Debug.WriteLine(Session["Gebruikersnaam"]);
+                    return RedirectToAction("Index");
+                }
+                
+                //Toon foutmelding
+                
+            }
+           
+            return RedirectToAction("Inloggen");
         }
         
-        public ActionResult Registreer_Click(string gebruikersnaam, string wachtwoord, string voornaam, int binnenbeenlengte)
+        public ActionResult Registreer_Click(string gebruikersnaam, string wachtwoord, string voornaam, int? binnenbeenlengte)
         {
-            //Random nummer genereren voor UserID
-            Random RandomNummer = new Random();
-            int nummer = RandomNummer.Next();
-            
-            //Aanmaken van een account in een object
-            ACCOUNT niewAccount = new ACCOUNT()
+            if (string.IsNullOrWhiteSpace(gebruikersnaam) || string.IsNullOrWhiteSpace(wachtwoord) || string.IsNullOrWhiteSpace(voornaam) || binnenbeenlengte == null)
             {
-                Gebruikersnaam = gebruikersnaam,
-                UserID = nummer,
-                Wachtwoord = wachtwoord,
-                Binnenbeenlengte = binnenbeenlengte,
-                Voornaam = voornaam,
-                Leeftijd = null,
-                IsAdmin = false,
-                Gewicht = null,
-                Lengte = null,
-                Niveau = 0
-            };
+                //Toon foutmelding
+                return RedirectToAction("Registreer");
+            }
+            else
+            {
+                int binnenbeenlengteInt = binnenbeenlengte.GetValueOrDefault();
 
-            //Account toevoegen aan database
-            db.ACCOUNT.Add(niewAccount);
-            db.SaveChanges();
+                //Aanmaken van een account in een object
+                ACCOUNT niewAccount = new ACCOUNT()
+                {
+                    Gebruikersnaam = gebruikersnaam,
+                    Wachtwoord = wachtwoord,
+                    Binnenbeenlengte = binnenbeenlengteInt,
+                    Voornaam = voornaam,
+                    Leeftijd = null,
+                    IsAdmin = false,
+                    Gewicht = null,
+                    Lengte = null,
+                    Niveau = 0
 
-            return RedirectToAction("Login");
+                };
+
+                //Account toevoegen aan database
+                db.ACCOUNT.Add(niewAccount);
+                db.SaveChanges();
+
+                return RedirectToAction("Login");
+            }
+
+            
         }
     }
 }

@@ -17,15 +17,12 @@ namespace FietsInfo
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
-
-        [Required]
         [StringLength(255)]
         public string Gebruikersnaam { get; set; }
 
         [Required]
         [StringLength(255)]
+        [DataType(DataType.Password)]
         public string Wachtwoord { get; set; }
 
         [Required]

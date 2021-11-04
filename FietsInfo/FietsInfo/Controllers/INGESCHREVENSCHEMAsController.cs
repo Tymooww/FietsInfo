@@ -22,13 +22,13 @@ namespace FietsInfo.Controllers
         }
 
         // GET: INGESCHREVENSCHEMAs/Details/5
-        public ActionResult Details(int? userid, string trainingsnaam)
+        public ActionResult Details(string gebruikersnaam, string trainingsnaam)
         {
-            if (userid == null || trainingsnaam == null)
+            if (gebruikersnaam == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(gebruikersnaam, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace FietsInfo.Controllers
         // GET: INGESCHREVENSCHEMAs/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord");
+            ViewBag.Gebruikersnaam = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord");
             ViewBag.Trainingsnaam = new SelectList(db.TRAININGSSCHEMA, "Trainingsnaam", "Omschrijving");
             return View();
         }
@@ -49,7 +49,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Trainingsnaam,IsVoltooid,DagenVoltooid")] INGESCHREVENSCHEMA iNGESCHREVENSCHEMA)
+        public ActionResult Create([Bind(Include = "Gebruikersnaam,Trainingsnaam,IsVoltooid,DagenVoltooid")] INGESCHREVENSCHEMA iNGESCHREVENSCHEMA)
         {
             if (ModelState.IsValid)
             {
@@ -58,24 +58,24 @@ namespace FietsInfo.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", iNGESCHREVENSCHEMA.UserID);
+            ViewBag.Gebruikersnaam = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", iNGESCHREVENSCHEMA.Gebruikersnaam);
             ViewBag.Trainingsnaam = new SelectList(db.TRAININGSSCHEMA, "Trainingsnaam", "Omschrijving", iNGESCHREVENSCHEMA.Trainingsnaam);
             return View(iNGESCHREVENSCHEMA);
         }
 
         // GET: INGESCHREVENSCHEMAs/Edit/5
-        public ActionResult Edit(int? userid, string trainingsnaam)
+        public ActionResult Edit(string gebruikersnaam, string trainingsnaam)
         {
-            if (userid == null || trainingsnaam == null)
+            if (gebruikersnaam == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(gebruikersnaam, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", iNGESCHREVENSCHEMA.UserID);
+            ViewBag.Gebruikersnaam = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", iNGESCHREVENSCHEMA.Gebruikersnaam);
             ViewBag.Trainingsnaam = new SelectList(db.TRAININGSSCHEMA, "Trainingsnaam", "Omschrijving", iNGESCHREVENSCHEMA.Trainingsnaam);
             return View(iNGESCHREVENSCHEMA);
         }
@@ -85,7 +85,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Trainingsnaam,IsVoltooid,DagenVoltooid")] INGESCHREVENSCHEMA iNGESCHREVENSCHEMA)
+        public ActionResult Edit([Bind(Include = "Gebruikersnaam,Trainingsnaam,IsVoltooid,DagenVoltooid")] INGESCHREVENSCHEMA iNGESCHREVENSCHEMA)
         {
             if (ModelState.IsValid)
             {
@@ -93,19 +93,19 @@ namespace FietsInfo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", iNGESCHREVENSCHEMA.UserID);
+            ViewBag.Gebruikersnaam = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", iNGESCHREVENSCHEMA.Gebruikersnaam);
             ViewBag.Trainingsnaam = new SelectList(db.TRAININGSSCHEMA, "Trainingsnaam", "Omschrijving", iNGESCHREVENSCHEMA.Trainingsnaam);
             return View(iNGESCHREVENSCHEMA);
         }
 
         // GET: INGESCHREVENSCHEMAs/Delete/5
-        public ActionResult Delete(int? userid, string trainingsnaam)
+        public ActionResult Delete(string gebruikersnaam, string trainingsnaam)
         {
-            if (userid == null || trainingsnaam == null)
+            if (gebruikersnaam == null || trainingsnaam == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(gebruikersnaam, trainingsnaam);
             if (iNGESCHREVENSCHEMA == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,9 @@ namespace FietsInfo.Controllers
         // POST: INGESCHREVENSCHEMAs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? userid, string trainingsnaam)
+        public ActionResult DeleteConfirmed(string gebruikersnaam, string trainingsnaam)
         {
-            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(userid, trainingsnaam);
+            INGESCHREVENSCHEMA iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Find(gebruikersnaam, trainingsnaam);
             db.INGESCHREVENSCHEMA.Remove(iNGESCHREVENSCHEMA);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -11,8 +11,9 @@ namespace FietsInfo
     {
         [Key]
         [Column(Order = 0)]
+        [StringLength(255)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
+        public string Gebruikersnaam { get; set; }
 
         [Key]
         [Column(Order = 1)]

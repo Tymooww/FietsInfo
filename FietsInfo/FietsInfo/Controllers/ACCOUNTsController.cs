@@ -29,7 +29,7 @@ namespace FietsInfo.Controllers
        
         // GET: ACCOUNTs/Details/5
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Wachtwoord,Voornaam,Leeftijd,IsAdmin,Binnenbeenlengte,Gewicht,Lengte,Niveau")] ACCOUNT aCCOUNT)
+        public ActionResult Create([Bind(Include = "Gebruikersnaam,Wachtwoord,Voornaam,Leeftijd,IsAdmin,Binnenbeenlengte,Gewicht,Lengte,Niveau")] ACCOUNT aCCOUNT)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace FietsInfo.Controllers
         }
 
         // GET: ACCOUNTs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Wachtwoord,Voornaam,Leeftijd,IsAdmin,Binnenbeenlengte,Gewicht,Lengte,Niveau")] ACCOUNT aCCOUNT)
+        public ActionResult Edit([Bind(Include = "Gebruikersnaam,Wachtwoord,Voornaam,Leeftijd,IsAdmin,Binnenbeenlengte,Gewicht,Lengte,Niveau")] ACCOUNT aCCOUNT)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace FietsInfo.Controllers
         }
 
         // GET: ACCOUNTs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -115,7 +115,7 @@ namespace FietsInfo.Controllers
         // POST: ACCOUNTs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             ACCOUNT aCCOUNT = db.ACCOUNT.Find(id);
             db.ACCOUNT.Remove(aCCOUNT);
