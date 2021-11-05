@@ -18,17 +18,20 @@ namespace FietsInfo.Controllers
         {
             ACCOUNT account = db.ACCOUNT.Find(Session["Gebruikersnaam"]);
             double fietsmaat = account.Fietsmaatberekenen();
-            return View("Fietsmaatberekenen", fietsmaat);
+            HttpContext.Session.Add("Fietsmaat", fietsmaat);
+            return View("Fietsmaatberekenen");
         }
 
         // GET: ACCOUNTs
         public ActionResult Index()
         {
+            //Check of gebruiker is ingelogd
             if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
             {
                 return RedirectToAction("Login", "Home");
             }
-            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            //Check of gebruiker admin is
+            if (db.ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
             {
                 return View(db.ACCOUNT.ToList());
             }
@@ -43,6 +46,7 @@ namespace FietsInfo.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
+            FietsMaat();
             return View();
         }
 
@@ -138,6 +142,15 @@ namespace FietsInfo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            //Zorg dat gebruikers die nog een schema volgen worden verwijderd
+            var schema = db.INGESCHREVENSCHEMA.Where(a => a.Gebruikersnaam == id);
+            var Schema = schema.ToList();
+            foreach (var item in Schema)
+            {
+                db.INGESCHREVENSCHEMA.Remove(item);
+            }
+
+            //Schema verwijderen
             ACCOUNT aCCOUNT = db.ACCOUNT.Find(id);
             db.ACCOUNT.Remove(aCCOUNT);
             db.SaveChanges();

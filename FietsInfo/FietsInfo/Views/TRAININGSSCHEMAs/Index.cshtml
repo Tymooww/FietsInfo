@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Trainingsschema's</h2>
+
+<h1>Trainingsschema's</h1>
+<h3>Kies een van de door experts gemaakte trainingsschema's</h3>
+<h4>Jouw trainingsniveau is: @Session["Trainingsniveau"]</h4>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -35,12 +39,13 @@
             @Html.DisplayNameFor(model => model.Urenzondag)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.trainingsniveau)
+            Niveau
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
 <tr>
     <td>
         @Html.DisplayFor(modelItem => item.Trainingsnaam)
@@ -73,9 +78,15 @@
         @Html.DisplayFor(modelItem => item.trainingsniveau)
     </td>
     <td>
-        @Html.ActionLink("Volgen", "Details", new { id = item.Trainingsnaam })
-    </td>
-</tr>
-}
-
+        @if (new DatabaseModel().INGESCHREVENSCHEMA.Find((string)Session["Gebruikersnaam"], item.Trainingsnaam) == null)
+        {
+            @Html.ActionLink("Volgen", "SchemaVolgen", new { trainingsnaam = item.Trainingsnaam })
+        }
+        else
+        {
+            <p>Volgend</p>
+        }
+        </td>
+    </tr>
+    }
 </table>

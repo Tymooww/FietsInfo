@@ -4,44 +4,43 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Voortgang updaten</h2>
-
-
+<h1>Voortgang updaten</h1>
+<h3>Update hier de voortgang van je training</h3>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Gebruikersnaam)
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Gebruikersnaam)
 
-        @Html.HiddenFor(model => model.Trainingsnaam)
+    @Html.HiddenFor(model => model.Trainingsnaam)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsVoltooid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsVoltooid)
-                    @Html.ValidationMessageFor(model => model.IsVoltooid, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DagenVoltooid, "Dagen votooid", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DagenVoltooid, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DagenVoltooid, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DagenVoltooid, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DagenVoltooid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DagenVoltooid, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Opslaan" class="btn btn-default" />
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsVoltooid, "Schema voltooid", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsVoltooid)
+                @Html.ValidationMessageFor(model => model.IsVoltooid, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Opslaan" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

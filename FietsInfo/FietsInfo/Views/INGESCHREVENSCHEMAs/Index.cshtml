@@ -4,24 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Voortgang van de door jou gevolgde trainingsschema's beheren</h2>
-
-<p>
-    @Html.ActionLink("Een nieuw schema volgen", "Create")
-</p>
+<h1>Voortgang trainingen</h1>
+<h3>Bekijk en update de voortgang van de door jou gevolgde trainingsschema's</h3>
+<br />
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ACCOUNT.Gebruikersnaam)
+            @Html.DisplayNameFor(model => (model.TRAININGSSCHEMA.Trainingsnaam))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TRAININGSSCHEMA.Trainingsnaam)
+            Dagen voltooid
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsVoltooid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DagenVoltooid)
+            Schema voltooid
         </th>
         <th></th>
     </tr>
@@ -29,21 +24,17 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.ACCOUNT.Gebruikersnaam)
-    </td>
-    <td>
         @Html.DisplayFor(modelItem => item.TRAININGSSCHEMA.Trainingsnaam)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.IsVoltooid)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.DagenVoltooid)
     </td>
     <td>
-        @Html.ActionLink("Wijzigen", "Edit", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam }) |
-        @Html.ActionLink("Details", "Details", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam }) |
-        @Html.ActionLink("Verwijderen", "Delete", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam })
+        @Html.DisplayFor(modelItem => item.IsVoltooid)
+    </td>
+    <td>
+        @Html.ActionLink("Voortgang updaten", "Edit", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam }) |
+        @Html.ActionLink("Ontvolgen", "Delete", new { gebruikersnaam = item.Gebruikersnaam, trainingsnaam = item.Trainingsnaam })
     </td>
 </tr>
 }

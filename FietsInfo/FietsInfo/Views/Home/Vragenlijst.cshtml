@@ -3,17 +3,18 @@
 }
 
 <div class="center">
-    <div class="titelmargin">
+    <div class="titelmargin2">
         <h1>Vragenlijst</h1>
-        <p div class="lead">Bepaal hier je niveau door deze vragen in te vullen</p>
-        <p>klik aan indien van toepassing, als dit niet van toepassing is laat leeg</p>
+        <p div class="lead">Door het invullen van deze vragenlijst wordt je niveau bepaald.</p>
+        <p>Klik de vierkantjes aan die van toepassing zijn en vul de velden in.</p>
+        <br />
         <br />
         <form method="get" action="@Url.Action("Vragenlijst_Click", "Home")">
             <p div class="lead">Hoeveel jaar heeft u fietservaring? </p>
             <input type="text" name="Fietservaring" />
             <br />
             <br />
-            <p div class="lead">Doet of deed u een conditionele sport? </p>
+            <p div class="lead">Doet of deed u een conditionele sport (zoals hardlopen, roeien etc.)? </p>
             @Html.CheckBox("Conditie", false)
             <br />
             <br />
@@ -21,15 +22,15 @@
             <input type="text" name="Leeftijd" />
             <br />
             <br />
-            <p div class="lead">Bent u blessuregevoelig?</p>
+            <p div class="lead">Bent u blessuregevoelig bij sporten?</p>
             @Html.CheckBox("Blessuregevoeligheid", false)
             <br />
             <br />
-            @if ((string)Session["VragenlijstCode"] == "Onjuist")
+            @if ((string)Session["VragenlijstCode"] == "VeldLeeg")
             {
                 <p class="foutmelding">Eén of meerdere velden zijn niet ingevuld!</p>
             }
-            <input type="submit" value="Bevestig">
+            <input type="submit" value="Opslaan">
         </form>
     </div>
 </div>

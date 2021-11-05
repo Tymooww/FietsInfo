@@ -16,20 +16,6 @@ namespace FietsInfo.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         public ActionResult Login()
         {
             return View();
@@ -56,9 +42,12 @@ namespace FietsInfo.Controllers
             {
                 //Error melding geven
                 HttpContext.Session.Add("VragenlijstCode", "VeldLeeg");
+                return RedirectToAction("Vragenlijst");
             }
             else
             {
+                //Per onderdeel van de vragenlijst punten berekenen
+                //Onderdeel: leeftijd
                 int leeftijdint = leeftijd.GetValueOrDefault();
                 int fietservaringint = fietservaring.GetValueOrDefault();
                 if (leeftijdint > 0 && leeftijdint <= 20)
@@ -81,6 +70,8 @@ namespace FietsInfo.Controllers
                 {
                     niveaupunten += 1;
                 }
+
+                //Onderdeel: ervaring
                 if (fietservaringint == 0)
                 {
                     niveaupunten += 1;
@@ -101,6 +92,8 @@ namespace FietsInfo.Controllers
                 {
                     niveaupunten += 5;
                 }
+
+                //Onderdeel: conditie
                 if (conditie == true)
                 {
                     niveaupunten += 4;
@@ -109,6 +102,8 @@ namespace FietsInfo.Controllers
                 {
                     niveaupunten += 2;
                 }
+
+                //Onderdeel blessuregevoeligheid
                 if (blessuregevoeligheid == true)
                 {
                     niveaupunten += 1;
@@ -117,16 +112,19 @@ namespace FietsInfo.Controllers
                 {
                     niveaupunten += 3;
                 }
+                
+                //Breken gemiddelde
                 int niveau = niveaupunten / 4;
                 Debug.WriteLine(niveau);
 
+                //Sla gegevens op in de database
                 ACCOUNT account = db.ACCOUNT.Find(Session["Registreergb"]);
                 account.Niveau = niveau;
+                account.Leeftijd = leeftijdint.ToString();
                 db.SaveChanges();
-
+                return RedirectToAction("Login");
 
             }
-            return View("Login");
         }
 
 
@@ -151,6 +149,7 @@ namespace FietsInfo.Controllers
                     if (account.Gebruikersnaam == gebruikersnaam && account.Wachtwoord == wachtwoord)
                     {
                         HttpContext.Session.Add("Gebruikersnaam", gebruikersnaam);
+                        HttpContext.Session.Add("Voornaam", account.Voornaam);
                         HttpContext.Session.Add("LoginCode", "Succes");
                         Debug.WriteLine(Session["Gebruikersnaam"] + " succesvol ingelogd!");
                         return RedirectToAction("Index");

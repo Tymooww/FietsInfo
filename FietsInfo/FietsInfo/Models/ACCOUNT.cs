@@ -39,6 +39,7 @@ namespace FietsInfo
         public double Fietsmaatberekenen()
         {
             double Fietsmaat = Binnenbeenlengte * 0.68;
+            Fietsmaat = (int)Fietsmaat;
             return Fietsmaat;
         }
 

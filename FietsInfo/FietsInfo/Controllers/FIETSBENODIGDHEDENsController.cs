@@ -16,11 +16,13 @@ namespace FietsInfo.Controllers
 
         public ActionResult IndexAdmin()
         {
+            //Check of gebruiker is ingelogd
             if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
             {
                 return RedirectToAction("Login", "Home");
             }
-            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            //Check of gebruiker admin is
+            if (db.ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
             {
                 var fIETSBENODIGDHEDEN = db.FIETSBENODIGDHEDEN.Include(f => f.ACCOUNT);
                 return View(fIETSBENODIGDHEDEN.ToList());
@@ -54,7 +56,7 @@ namespace FietsInfo.Controllers
         // GET: FIETSBENODIGDHEDENs/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord");
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord");
             return View();
         }
 
@@ -63,7 +65,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Aspectnaam,Informatie,UserID")] FIETSBENODIGDHEDEN fIETSBENODIGDHEDEN)
+        public ActionResult Create([Bind(Include = "Aspectnaam,Informatie,Gebruikersnaam")] FIETSBENODIGDHEDEN fIETSBENODIGDHEDEN)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +74,7 @@ namespace FietsInfo.Controllers
                 return RedirectToAction("IndexAdmin");
             }
 
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 
@@ -88,7 +90,7 @@ namespace FietsInfo.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 
@@ -97,7 +99,7 @@ namespace FietsInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Aspectnaam,Informatie,UserID")] FIETSBENODIGDHEDEN fIETSBENODIGDHEDEN)
+        public ActionResult Edit([Bind(Include = "Aspectnaam,Informatie,Gebruikersnaam")] FIETSBENODIGDHEDEN fIETSBENODIGDHEDEN)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +107,7 @@ namespace FietsInfo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("IndexAdmin");
             }
-            ViewBag.UserID = new SelectList(db.ACCOUNT, "UserID", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
+            ViewBag.UserID = new SelectList(db.ACCOUNT, "Gebruikersnaam", "Wachtwoord", fIETSBENODIGDHEDEN.Gebruikersnaam);
             return View(fIETSBENODIGDHEDEN);
         }
 

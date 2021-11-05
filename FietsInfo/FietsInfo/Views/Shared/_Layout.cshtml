@@ -45,15 +45,6 @@
                         <li>@Html.ActionLink("Trainingsschema's", "Index", "TRAININGSSCHEMAs")</li>
                         <li>@Html.ActionLink("Fietsmaat", "Fietsmaatberekenen", "ACCOUNTs")</li>
                     }
-                    @if (!string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
-                    {
-                        <li>@Html.ActionLink("Uitloggen", "Uitloggen", "Home")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
-                        <li>@Html.ActionLink("Registreer", "Registreer", "Home")</li>
-                    }
                 </ul>
             </div>
         </div>

@@ -8,7 +8,7 @@
     ViewBag.Title = "Inloggen";
 }
 <div class="center">
-    <div class="titelmargin">
+    <div class="titelmargin2">
         <h1>Inloggen</h1>
         <p div class="lead">Log in met je gebruikersnaam en wachtwoord</p>
         <br />
@@ -18,7 +18,7 @@
             <br />
             <br />
             <p div class="lead">Wachtwoord</p>
-            <input type="text" name="wachtwoord" />
+            <input type="password" name="wachtwoord" />
             <br />
             <br />
             @if ((string)Session["LoginCode"] == "Onjuist")

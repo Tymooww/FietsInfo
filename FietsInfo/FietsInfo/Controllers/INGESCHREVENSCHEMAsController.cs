@@ -17,12 +17,14 @@ namespace FietsInfo.Controllers
         // GET: INGESCHREVENSCHEMAs
         public ActionResult Index()
         {
+            //Check of gebruiker is ingelogd
             if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
             {
                 return RedirectToAction("Login", "Home");
             }
 
-            var iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Include(i => i.ACCOUNT).Include(i => i.TRAININGSSCHEMA);
+            string gebruikersnaam = (string)Session["Gebruikersnaam"];
+            var iNGESCHREVENSCHEMA = db.INGESCHREVENSCHEMA.Include(i => i.ACCOUNT).Include(i => i.TRAININGSSCHEMA).Where(a => a.Gebruikersnaam == gebruikersnaam);
             return View(iNGESCHREVENSCHEMA.ToList());
         }
 

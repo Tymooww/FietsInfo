@@ -3,9 +3,10 @@
     ViewBag.Title = "Fietsmaatberekenen";
 }
 
-<h2>Fietsmaat</h2>
-<p div class="lead">Bereken je framemaat hier.</p>
-
-<input class="btn btn-primary btn-lg" type="button" value="FietsmaatBerekenen" onclick="location.href='@Url.Action("FietsMaat", "ACCOUNTs")'">
+<h1>Fietsmaat</h1>
+<h3>Om te kijken welke fiets geschikt is wordt er gekeken naar de fietsmaat.</h3>
+<br />
+<p div class="lead">Jouw fietsmaat is:</p>
+<input  type="text" value="@Session["Fietsmaat"]" readonly>
 
 

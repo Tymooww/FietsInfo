@@ -14,11 +14,13 @@ namespace FietsInfo.Controllers
     {
         public ActionResult IndexAdmin()
         {
+           //Check of gebruiker is ingelogd
             if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
             {
                 return RedirectToAction("Login", "Home");
             }
-            if ((bool)new DatabaseModel().ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
+            //Check of gebruiker admin is
+            if (db.ACCOUNT.Find((string)Session["Gebruikersnaam"]).IsAdmin)
             {
                 return View(db.TRAININGSSCHEMA.ToList());
             }
@@ -26,7 +28,23 @@ namespace FietsInfo.Controllers
             return RedirectToAction("Login", "Home");
             
         }
+        public ActionResult SchemaVolgen(string trainingsnaam)
+        {
+            //Nieuw ingeschrevenschema maken (dus de connectie maken tussen schema en gebruiker)
+            INGESCHREVENSCHEMA NieuwIngeschrevenschema = new INGESCHREVENSCHEMA()
+            {
+                Gebruikersnaam = (string)Session["Gebruikersnaam"],
+                Trainingsnaam = trainingsnaam,
+                IsVoltooid = false,
+                DagenVoltooid = 0,
+            };
 
+            //Opslaan in database
+            db.INGESCHREVENSCHEMA.Add(NieuwIngeschrevenschema);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
         private DatabaseModel db = new DatabaseModel();
 
         // GET: TRAININGSSCHEMAs
@@ -36,7 +54,9 @@ namespace FietsInfo.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            
+
+            ACCOUNT account = db.ACCOUNT.Find(Session["Gebruikersnaam"]);
+            HttpContext.Session.Add("Trainingsniveau", account.Niveau);
             return View(db.TRAININGSSCHEMA.ToList());
         }
 
@@ -129,6 +149,15 @@ namespace FietsInfo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            //Zorg dat gebruikers die dit schema volgen worden verwijderd
+            var schema = db.INGESCHREVENSCHEMA.Where(a => a.Trainingsnaam == id);
+            var Schema = schema.ToList();
+            foreach (var item in Schema)
+            {
+                db.INGESCHREVENSCHEMA.Remove(item);
+            }
+
+            //Schema verwijderen
             TRAININGSSCHEMA tRAININGSSCHEMA = db.TRAININGSSCHEMA.Find(id);
             db.TRAININGSSCHEMA.Remove(tRAININGSSCHEMA);
             db.SaveChanges();

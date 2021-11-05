@@ -5,7 +5,8 @@
 
 <div class="center">
     <div class="titelmargin">
-
+        
+        <img src="~/FietsInfoLogo.jpg" />
         @if (string.IsNullOrWhiteSpace((string)Session["Gebruikersnaam"]))
         {
             <h1>Welkom bij FietsInfo</h1>
@@ -16,7 +17,7 @@
         }
         else
         {
-            <h1>Welkom terug @Session["Gebruikersnaam"]!</h1>
+            <h1>Welkom terug @Session["Voornaam"]!</h1>
             <p div class="lead">Kies één van de bovenstaande pagina's</p>
             <input class="btn btn-primary btn-lg" type="button" value="Uitloggen" onclick="location.href='@Url.Action("Uitloggen", "Home")'">
         }
