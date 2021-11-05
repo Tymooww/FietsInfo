@@ -205,6 +205,7 @@
     <Content Include="Views\Accounts\Fietsmaatberekenen.cshtml" />
     <Content Include="Views\TRAININGSSCHEMAs\IndexAdmin.cshtml" />
     <Content Include="Views\FIETSBENODIGDHEDENs\IndexAdmin.cshtml" />
+    <Content Include="Views\Home\Vragenlijst.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

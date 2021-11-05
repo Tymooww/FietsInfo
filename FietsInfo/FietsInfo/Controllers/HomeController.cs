@@ -29,22 +29,108 @@ namespace FietsInfo.Controllers
 
             return View();
         }
-        
+
         public ActionResult Login()
         {
             return View();
         }
-        
+        public ActionResult Vragenlijst()
+        {
+            return View();
+        }
         public ActionResult Registreer()
         {
             return View();
         }
-        
+
         public ActionResult Uitloggen()
         {
             Session["Gebruikersnaam"] = null;
             return View("Index");
         }
+
+        public ActionResult Vragenlijst_Click(int? fietservaring, int? leeftijd, bool conditie, bool blessuregevoeligheid)
+        {
+            int niveaupunten = 0;
+            if (fietservaring == null || leeftijd == null)
+            {
+                //Error melding geven
+                HttpContext.Session.Add("VragenlijstCode", "VeldLeeg");
+            }
+            else
+            {
+                int leeftijdint = leeftijd.GetValueOrDefault();
+                int fietservaringint = fietservaring.GetValueOrDefault();
+                if (leeftijdint > 0 && leeftijdint <= 20)
+                {
+                    niveaupunten += 5;
+                }
+                if (leeftijdint > 20 && leeftijdint <= 40)
+                {
+                    niveaupunten += 4;
+                }
+                if (leeftijdint > 40 && leeftijdint <= 60)
+                {
+                    niveaupunten += 3;
+                }
+                if (leeftijdint > 60 && leeftijdint <= 80)
+                {
+                    niveaupunten += 2;
+                }
+                if (leeftijdint > 80)
+                {
+                    niveaupunten += 1;
+                }
+                if (fietservaringint == 0)
+                {
+                    niveaupunten += 1;
+                }
+                if (fietservaringint == 1)
+                {
+                    niveaupunten += 2;
+                }
+                if (fietservaringint == 3)
+                {
+                    niveaupunten += 3;
+                }
+                if (fietservaringint == 4)
+                {
+                    niveaupunten += 4;
+                }
+                if (fietservaringint > 5)
+                {
+                    niveaupunten += 5;
+                }
+                if (conditie == true)
+                {
+                    niveaupunten += 4;
+                }
+                if (conditie == false)
+                {
+                    niveaupunten += 2;
+                }
+                if (blessuregevoeligheid == true)
+                {
+                    niveaupunten += 1;
+                }
+                if (blessuregevoeligheid == false)
+                {
+                    niveaupunten += 3;
+                }
+                int niveau = niveaupunten / 4;
+                Debug.WriteLine(niveau);
+
+                ACCOUNT account = db.ACCOUNT.Find(Session["Registreergb"]);
+                account.Niveau = niveau;
+                db.SaveChanges();
+
+
+            }
+            return View("Login");
+        }
+
+
+
 
         public ActionResult Login_Click(string gebruikersnaam, string wachtwoord)
         {
@@ -58,7 +144,7 @@ namespace FietsInfo.Controllers
             {
                 //Account zoeken
                 ACCOUNT account = db.ACCOUNT.Find(gebruikersnaam);
-                
+
                 if (account != null)
                 {
                     //Inloggegevens checken
@@ -83,7 +169,7 @@ namespace FietsInfo.Controllers
             }
             return View("Login");
         }
-        
+
         public ActionResult Registreer_Click(string gebruikersnaam, string wachtwoord, string voornaam, int? binnenbeenlengte)
         {
             if (string.IsNullOrWhiteSpace(gebruikersnaam) || string.IsNullOrWhiteSpace(wachtwoord) || string.IsNullOrWhiteSpace(voornaam) || binnenbeenlengte == null)
@@ -97,7 +183,7 @@ namespace FietsInfo.Controllers
                 int binnenbeenlengteInt = binnenbeenlengte.GetValueOrDefault();
 
                 //Aanmaken van een account in een object
-                ACCOUNT niewAccount = new ACCOUNT()
+                ACCOUNT nieuwAccount = new ACCOUNT()
                 {
                     Gebruikersnaam = gebruikersnaam,
                     Wachtwoord = wachtwoord,
@@ -111,10 +197,11 @@ namespace FietsInfo.Controllers
                 };
 
                 //Account opslaan in de database
-                db.ACCOUNT.Add(niewAccount);
+                db.ACCOUNT.Add(nieuwAccount);
                 db.SaveChanges();
-
-                return RedirectToAction("Login");
+                HttpContext.Session.Add("Registreergb", gebruikersnaam);
+                
+                return RedirectToAction("Vragenlijst");
             }
 
         }
